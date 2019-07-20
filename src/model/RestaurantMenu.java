@@ -1,16 +1,34 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RestaurantMenu {
+public class RestaurantMenu implements Serializable {
+	private String restaurantName;
 	private ArrayList<RestaurantMenuItem> menuItems;
 
 	RestaurantMenu() {
-
+		this.restaurantName = "";
+		this.menuItems = new ArrayList<RestaurantMenuItem>();
 	}
 
-	RestaurantMenu(ArrayList<RestaurantMenuItem> menuItems) {
-		this.menuItems = menuItems;
+	RestaurantMenu(String restaurantName) {
+		this.restaurantName = restaurantName;
+		this.menuItems = new ArrayList<RestaurantMenuItem>();
+	}
+
+	/**
+	 * @return the restaurantName
+	 */
+	public String getRestaurantName() {
+		return restaurantName;
+	}
+
+	/**
+	 * @param restaurantName the restaurantName to set
+	 */
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
 	}
 
 	public void addMenuItem(RestaurantMenuItem menuItem) {
@@ -32,8 +50,7 @@ public class RestaurantMenu {
 		return menuItems;
 	}
 
-	@Override
-	public String toString() {
+	public String asString() {
 		// TODO Auto-generated method stub
 		return null;
 	}

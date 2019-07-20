@@ -50,8 +50,8 @@ public class Food extends RestaurantMenuItem {
 	}
 
 	@Override
-	public String toString() {
+	public String asString() {
 		// TODO Auto-generated method stub
-		return null;
+		return super.asString() + this.description + this.getItemType();
 	}
 }

@@ -1,6 +1,8 @@
 package model;
 
-public abstract class RestaurantMenuItem {
+import java.io.Serializable;
+
+public abstract class RestaurantMenuItem implements Serializable {
 	private String name;
 	private double price;
 	private int calories;
@@ -48,4 +50,8 @@ public abstract class RestaurantMenuItem {
 	}
 
 	abstract String getItemType();
+
+	public String asString() {
+		return this.name + this.price + this.calories;
+	}
 }
