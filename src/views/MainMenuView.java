@@ -1,59 +1,71 @@
 package views;
 
-
 public class MainMenuView extends View {
-	    
+
 	public MainMenuView() {
-		    super("\n---------------------------------------------------"
-		        +"\n|  Main Menu                                      |"
-		        +"\n---------------------------------------------------"
-		        +"\nN - Start new game        "
-		        +"\nG - Sart Existing Game"    
-		        +"\nH - Get help on how to play the game"
-		        +"\nS - Save Game"
-		        +"\nQ - Quit"
-		        +"\n---------------------------------------------------"
-		        +"\n"
-		        +"\n"
-		        +"\nPlease enter your choice: ");
-		}
+		super(getMainMenuString());
+	}
 
 	@Override
 	public boolean doAction(String choice) {
-	    choice = choice.toUpperCase();
-	    
-	    switch (choice) {
-	        case "N": //create and start a new game
-			                this.startNewGame();
-	            break;
-	        case "G": //get and start an existing game
-		                this.startExistingGame();
-	            break;   
-	        case "H": //display help menu
-			                this.showHelpMenu();
-	            break;
-	        default:
-	        	System.out.printf(this.getClass().getName() +
-	                    "\n***Invalid selection. Try again.");
-	            break;
-	    }
-	    return false;
-	}
-	
-	private void startNewGame()
-	{
-		System.out.printf("You selected startNewGame");
+		choice = choice.toUpperCase();
+
+		switch (choice) {
+		case "N": // create and start a new game
+			this.createNewMenu();
+			break;
+		case "L": // get and start an existing game
+			this.loadExistingMenu();
+			break;
+		case "C": // display help menu
+			this.continueEditing();
+			break;
+		case "H": // display help menu
+			this.showHelpMenu();
+			break;
+		default:
+			System.out.printf(this.getClass().getName() + "\n***Invalid selection. Try again.");
+			break;
+		}
+		return false;
 	}
 
-	private void startExistingGame()
-	{
-		System.out.printf("You selected startExistingGame");
+	private void createNewMenu() {
+		System.out.printf("You selected Create New Menu");
 	}
-	
-	private void showHelpMenu()
-	{
+
+	private void loadExistingMenu() {
+		System.out.printf("You selected Load Menu");
+	}
+
+	private void showHelpMenu() {
 		View helpMenu = new HelpMenuView();
 		helpMenu.display();
-		
+
+	}
+
+	private void continueEditing() {
+		if (Sample.getRestaurantMenu() != null) {
+			System.out.printf("You selected Continue Editing");
+		} else {
+			System.out.printf("That's not a valid option.");
+		}
+	}
+
+	private static String getContinueMenuString() {
+		if (Sample.getRestaurantMenu() != null) {
+			return "\nC - Continue editing current menu";
+		} else {
+			return "";
+		}
+	}
+
+	private static String getMainMenuString() {
+		return "\n---------------------------------------------------"
+				+ "\n|  Main Menu                                      |"
+				+ "\n---------------------------------------------------" + "\nN - Create new menu"
+				+ "\nL - Load existing menu" + getContinueMenuString() + "\nH - Get help on how to use this program"
+				+ "\nQ - Quit" + "\n---------------------------------------------------" + "\n" + "\n"
+				+ "\nPlease enter your choice: ";
 	}
 }

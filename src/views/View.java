@@ -33,6 +33,12 @@ public abstract class View implements ViewInterface {
 		} while (!done);
 	}
 
+	public String getInput(String prompt) {
+		System.out.println("\n" + prompt);
+		String value = this.getInput();
+		return value;
+	}
+
 	@Override
 	public String getInput() {
 		String value = ""; // value to be returned
@@ -53,5 +59,29 @@ public abstract class View implements ViewInterface {
 			System.out.printf(this.getClass().getName(), "Error reading input: " + e.getMessage());
 		}
 		return value; // return the value entered
+	}
+
+	public double getDouble(String message) {
+		try {
+			System.out.print(message);
+			String testString = getInput();
+			double test2 = Double.parseDouble(testString);
+			return test2;
+		} catch (Exception e) {
+			System.out.println("Invalid value.  Error: " + e.getMessage());
+		}
+		return -1;
+	}
+
+	public Integer getInt(String message) {
+		try {
+			System.out.print(message);
+			String testString = getInput();
+			int test2 = Integer.parseInt(testString);
+			return test2;
+		} catch (Exception e) {
+			System.out.println("Invalid value.  Error: " + e.getMessage());
+		}
+		return -1;
 	}
 }
