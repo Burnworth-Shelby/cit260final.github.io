@@ -28,12 +28,14 @@ public class Sample {
 	}
 
 	/**
-	 * @param restaurantMenu the restaurantMenu to set
+	 * @param restaurantMenu
+	 * @param myMenu
 	 */
 	public static void setRestaurantMenu(RestaurantMenu myMenu) {
 		restaurantMenu = myMenu;
 	}
 
+	//load file 
 	public static boolean getSavedMenu(String filePath) {
 		restaurantMenu = null;
 		fileLoaded = filePath;
@@ -49,6 +51,7 @@ public class Sample {
 		return true;
 	}
 
+	//save file
 	public static boolean saveMenu(String filePath) {
 		if (restaurantMenu.getRestaurantName().isBlank()) {
 			restaurantMenu.setRestaurantName(filePath);

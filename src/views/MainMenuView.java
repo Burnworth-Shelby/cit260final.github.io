@@ -30,20 +30,24 @@ public class MainMenuView extends View {
 		return false;
 	}
 
+	//output to user creating new menu
 	private void createNewMenu() {
 		System.out.printf("You selected Create New Menu");
 	}
 
+	//output to user loading menu
 	private void loadExistingMenu() {
 		System.out.printf("You selected Load Menu");
 	}
 
+	//display help menu
 	private void showHelpMenu() {
 		View helpMenu = new HelpMenuView();
 		helpMenu.display();
 
 	}
 
+	//edit menu output to user
 	private void continueEditing() {
 		if (Sample.getRestaurantMenu() != null) {
 			System.out.printf("You selected Continue Editing");
@@ -59,7 +63,8 @@ public class MainMenuView extends View {
 			return "";
 		}
 	}
-
+	
+	//menu display to user
 	private static String getMainMenuString() {
 		return "\n---------------------------------------------------"
 				+ "\n|  Main Menu                                      |"

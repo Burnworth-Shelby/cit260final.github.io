@@ -20,10 +20,10 @@ public class HelpMenuView  extends View {
 	    choice = choice.toUpperCase();
 	    
 	    switch (choice) {
-	        case "C": //create and start a new game
+	        case "C": //create and start a new menu
 			                this.ClassHelp();
 	            break;
-	        case "O": //get and start an existing game
+	        case "O": //get and start an existing menu
 		                this.OtherHelp();
 	            break;   
 	        default:

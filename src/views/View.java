@@ -24,7 +24,7 @@ public abstract class View implements ViewInterface {
 			System.out.println("\n" + this.displayMessage);
 			String value = this.getInput();
 			if (value.toUpperCase().equals("Q")) // user wants to quit
-				return; // exit the game
+				return; // exit the menu
 
 			// this will do the requested action and display the next view
 
@@ -33,6 +33,11 @@ public abstract class View implements ViewInterface {
 		} while (!done);
 	}
 
+	/**The getInput Method
+	 * purpose: to get input from the user
+	 * @param prompt
+	 * @return value
+	 */
 	public String getInput(String prompt) {
 		System.out.println("\n" + prompt);
 		String value = this.getInput();

@@ -19,16 +19,12 @@ public class Beverage extends RestaurantMenuItem {
 		this.setRefillable(refillable);
 	}
 
-	/**
-	 * @return the refillable
-	 */
+	//return if drink is refillable
 	public boolean isRefillable() {
 		return refillable;
 	}
 
-	/**
-	 * @param refillable the refillable to set
-	 */
+	//determine if drink is refillable
 	public void setRefillable(boolean refillable) {
 		this.refillable = refillable;
 	}

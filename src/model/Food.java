@@ -22,23 +22,17 @@ public class Food extends RestaurantMenuItem {
 		this.setItemType(itemType);
 	}
 
-	/**
-	 * @return the description
-	 */
+	//return description of item
 	public String getDescription() {
 		return description;
 	}
 
-	/**
-	 * @param description the description to set
-	 */
+	//set description of item
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	/**
-	 * @param itemType the itemType to set
-	 */
+	//set item type
 	public void setItemType(int itemType) {
 		this.itemType = itemType;
 	}
