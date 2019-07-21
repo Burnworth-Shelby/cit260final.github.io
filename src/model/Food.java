@@ -1,3 +1,11 @@
+/**
+* The Food class is a subclass of RestaurantMenuItem.  It adds 
+* additional properties applicable to food items and a method 
+* for outputting as a String.
+*
+* @author  Carson Fairbourn & Shelby Burnworth
+*/
+
 package model;
 
 public class Food extends RestaurantMenuItem {
@@ -22,17 +30,17 @@ public class Food extends RestaurantMenuItem {
 		this.setItemType(itemType);
 	}
 
-	//return description of item
+	// return description of item
 	public String getDescription() {
 		return description;
 	}
 
-	//set description of item
+	// set description of item
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	//set item type
+	// set item type
 	public void setItemType(int itemType) {
 		this.itemType = itemType;
 	}

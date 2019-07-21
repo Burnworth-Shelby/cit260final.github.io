@@ -1,3 +1,11 @@
+/**
+* The Beverage class is a subclass of RestaurantMenuItem.  It adds 
+* additional properties applicable to beverage items and a method 
+* for outputting as a String.
+*
+* @author  Carson Fairbourn & Shelby Burnworth
+*/
+
 package model;
 
 public class Beverage extends RestaurantMenuItem {
@@ -19,12 +27,12 @@ public class Beverage extends RestaurantMenuItem {
 		this.setRefillable(refillable);
 	}
 
-	//return if drink is refillable
+	// return if drink is refillable
 	public boolean isRefillable() {
 		return refillable;
 	}
 
-	//determine if drink is refillable
+	// determine if drink is refillable
 	public void setRefillable(boolean refillable) {
 		this.refillable = refillable;
 	}

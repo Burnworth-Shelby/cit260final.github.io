@@ -1,3 +1,9 @@
+/**
+* The Sample class is the main controller where the program starts.
+*
+* @author  Carson Fairbourn & Shelby Burnworth
+*/
+
 package views;
 
 import java.io.FileInputStream;
@@ -35,7 +41,7 @@ public class Sample {
 		restaurantMenu = myMenu;
 	}
 
-	//load file 
+	// load file
 	public static boolean getSavedMenu(String filePath) {
 		restaurantMenu = null;
 		fileLoaded = filePath;
@@ -51,7 +57,7 @@ public class Sample {
 		return true;
 	}
 
-	//save file
+	// save file
 	public static boolean saveMenu(String filePath) {
 		if (restaurantMenu.getRestaurantName().isBlank()) {
 			restaurantMenu.setRestaurantName(filePath);
