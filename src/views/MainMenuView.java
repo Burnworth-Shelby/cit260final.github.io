@@ -1,5 +1,7 @@
 package views;
 
+import model.RestaurantMenu;
+
 public class MainMenuView extends View {
 
 	public MainMenuView() {
@@ -27,32 +29,46 @@ public class MainMenuView extends View {
 			System.out.printf(this.getClass().getName() + "\n***Invalid selection. Try again.");
 			break;
 		}
+
+		displayMessage = getMainMenuString();
+
 		return false;
 	}
 
-	//output to user creating new menu
+	// output to user creating new menu
 	private void createNewMenu() {
-		System.out.printf("You selected Create New Menu");
+		String restaurantName = this.getInput("What is the name of your restaurant?");
+		Sample.setRestaurantMenu(new RestaurantMenu(restaurantName));
+		View createMenu = new RestaurantMenuView();
+		createMenu.display();
 	}
 
-	//output to user loading menu
+	// output to user loading menu
 	private void loadExistingMenu() {
 		System.out.printf("You selected Load Menu");
 	}
 
-	//display help menu
+	// display help menu
 	private void showHelpMenu() {
 		View helpMenu = new HelpMenuView();
 		helpMenu.display();
-
 	}
 
-	//edit menu output to user
+	// edit menu output to user
 	private void continueEditing() {
 		if (Sample.getRestaurantMenu() != null) {
-			System.out.printf("You selected Continue Editing");
+			RestaurantMenuView restaurantMenuView = new RestaurantMenuView();
+			restaurantMenuView.display();
 		} else {
 			System.out.printf("That's not a valid option.");
+		}
+	}
+
+	private void saveMenu() {
+		String saveFileName;
+		String fileName = getInput("Enter filename:");
+		if (Sample.saveMenu(fileName)) {
+			displayMessage = getMainMenuString();
 		}
 	}
 
@@ -63,14 +79,14 @@ public class MainMenuView extends View {
 			return "";
 		}
 	}
-	
-	//menu display to user
+
+	// menu display to user
 	private static String getMainMenuString() {
 		return "\n---------------------------------------------------"
 				+ "\n|  Main Menu                                      |"
 				+ "\n---------------------------------------------------" + "\nN - Create new menu"
-				+ "\nL - Load existing menu" + getContinueMenuString() + "\nH - Get help on how to use this program"
-				+ "\nQ - Quit" + "\n---------------------------------------------------" + "\n" + "\n"
+				+ "\nL - Load menu from a file" + getContinueMenuString() + "\nH - Get help on how to use this program"
+				+ "\nQ - Quit" + "\n---------------------------------------------------"
 				+ "\nPlease enter your choice: ";
 	}
 }

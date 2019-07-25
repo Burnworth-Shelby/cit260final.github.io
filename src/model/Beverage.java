@@ -8,11 +8,13 @@
 
 package model;
 
-public class Beverage extends RestaurantMenuItem {
+import java.io.Serializable;
+
+public class Beverage extends RestaurantMenuItem implements Serializable {
 	private boolean refillable;
 
 	public Beverage() {
-		super();
+		super("", 0, 0);
 		this.setName("");
 		this.setPrice(0);
 		this.setCalories(0);
@@ -20,10 +22,7 @@ public class Beverage extends RestaurantMenuItem {
 	}
 
 	public Beverage(String name, double price, int calories, boolean refillable) {
-		super();
-		this.setName(name);
-		this.setPrice(price);
-		this.setCalories(calories);
+		super(name, price, calories);
 		this.setRefillable(refillable);
 	}
 

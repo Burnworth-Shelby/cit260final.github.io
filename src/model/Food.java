@@ -8,24 +8,20 @@
 
 package model;
 
-public class Food extends RestaurantMenuItem {
+import java.io.Serializable;
+
+public class Food extends RestaurantMenuItem implements Serializable {
 	private String description;
 	private int itemType;
 
 	public Food() {
-		super();
-		this.setName("");
-		this.setPrice(0);
-		this.setCalories(0);
+		super("", 0, 0);
 		this.setDescription("");
 		this.setItemType(0);
 	}
 
 	public Food(String name, double price, int calories, String description, int itemType) {
-		super();
-		this.setName(name);
-		this.setPrice(price);
-		this.setCalories(calories);
+		super(name, price, calories);
 		this.setDescription(description);
 		this.setItemType(itemType);
 	}

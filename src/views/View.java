@@ -23,6 +23,7 @@ public abstract class View implements ViewInterface {
 		do { // prompt for and get selected menu option
 			System.out.println("\n" + this.displayMessage);
 			String value = this.getInput();
+
 			if (value.toUpperCase().equals("Q")) // user wants to quit
 				return; // exit the menu
 
@@ -33,8 +34,9 @@ public abstract class View implements ViewInterface {
 		} while (!done);
 	}
 
-	/**The getInput Method
-	 * purpose: to get input from the user
+	/**
+	 * The getInput Method purpose: to get input from the user
+	 * 
 	 * @param prompt
 	 * @return value
 	 */

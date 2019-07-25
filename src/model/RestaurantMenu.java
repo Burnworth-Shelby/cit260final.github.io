@@ -15,12 +15,12 @@ public class RestaurantMenu implements Serializable {
 	private ArrayList<RestaurantMenuItem> menuItems;
 
 	// create an array of restaurant menu items
-	RestaurantMenu() {
+	public RestaurantMenu() {
 		this.restaurantName = "";
 		this.menuItems = new ArrayList<RestaurantMenuItem>();
 	}
 
-	RestaurantMenu(String restaurantName) {
+	public RestaurantMenu(String restaurantName) {
 		this.restaurantName = restaurantName;
 		this.menuItems = new ArrayList<RestaurantMenuItem>();
 	}

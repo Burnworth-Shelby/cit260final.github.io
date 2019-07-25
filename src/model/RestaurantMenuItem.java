@@ -15,6 +15,12 @@ public abstract class RestaurantMenuItem implements Serializable {
 	private double price;
 	private int calories;
 
+	public RestaurantMenuItem(String name, double price, int calories) {
+		this.setName(name);
+		this.setPrice(price);
+		this.setCalories(calories);
+	}
+
 	// get and return restaurant name
 	public String getName() {
 		return name;
