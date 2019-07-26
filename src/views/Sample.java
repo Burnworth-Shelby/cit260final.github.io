@@ -20,7 +20,6 @@ public class Sample {
 	private static String fileLoaded;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		MainMenuView mainMenu = new MainMenuView();
 		mainMenu.display();
 		System.out.printf("Game Over.");

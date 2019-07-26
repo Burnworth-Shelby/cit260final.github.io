@@ -1,5 +1,10 @@
 package views;
 
+import model.Beverage;
+import model.Food;
+import model.RestaurantMenu;
+import model.RestaurantMenuItem;
+
 public class RestaurantMenuView extends View {
 
 	public RestaurantMenuView() {
@@ -34,7 +39,62 @@ public class RestaurantMenuView extends View {
 	}
 
 	private void addMenuItem() {
-		System.out.printf("You selected add item to menu");
+		String itemName = getInput("What is the item called?");
+		RestaurantMenuItem newItem = null;
+		boolean promptType = true;
+		while (promptType) {
+			String itemType = getInput("What type of item is \"" + itemName
+					+ "\"?\n A - Appetizer\n E - Entree\n D - Dessert\n B - Beverage");
+			itemType = itemType.toUpperCase();
+			System.out.println(itemType);
+			if (itemType.equals("A") || itemType.equals("E") || itemType.equals("D")) {
+
+				switch (itemType) {
+				case "A": // add an appetizer menu item
+					itemType = "Appetizer";
+					break;
+				case "E": // add an entree menu item
+					itemType = "Entree";
+					break;
+				case "D": // add a dessert menu item
+					itemType = "Dessert";
+					break;
+				}
+				Food newFoodItem = new Food();
+				newFoodItem.setItemType(itemType);
+				newFoodItem.setDescription(getInput("Please provide a description for\"" + itemName + "\""));
+				newItem = newFoodItem;
+				promptType = false;
+			} else if (itemType == "B") {
+				Beverage newBeverageItem = new Beverage();
+				boolean refillable = false;
+				boolean promptRefillable = true;
+				while (promptRefillable) {
+					String refillableInput = getInput("Is this item refillable? (y/n)");
+					refillableInput = refillableInput.toUpperCase();
+					if (refillableInput == "Y") {
+						refillable = true;
+						promptRefillable = false;
+					} else if (refillableInput == "N") {
+						promptRefillable = false;
+					} else {
+						System.out.println("***Invalid input.  Try again.");
+					}
+				}
+				newBeverageItem.setRefillable(refillable);
+				newItem = newBeverageItem;
+				promptType = false;
+			} else {
+				System.out.println("***Invalid input.  Try again.");
+			}
+			newItem.setName(itemName);
+			newItem.setCalories(getInt("How many calories does a serving of " + itemName + " contain?"));
+			newItem.setPrice(getDouble("How much does " + itemName + " cost?"));
+			RestaurantMenu currentMenu = Sample.getRestaurantMenu();
+			currentMenu.addMenuItem(newItem);
+			Sample.setRestaurantMenu(currentMenu);
+		}
+
 	}
 
 	private void editMenuItem() {

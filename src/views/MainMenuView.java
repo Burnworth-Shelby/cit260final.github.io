@@ -25,6 +25,9 @@ public class MainMenuView extends View {
 		case "H": // display help menu
 			this.showHelpMenu();
 			break;
+		case "S":
+			this.saveMenu();
+			break;
 		default:
 			System.out.printf(this.getClass().getName() + "\n***Invalid selection. Try again.");
 			break;
@@ -45,7 +48,10 @@ public class MainMenuView extends View {
 
 	// output to user loading menu
 	private void loadExistingMenu() {
-		System.out.printf("You selected Load Menu");
+		String fileName = getInput("Enter filename:");
+		if (Sample.getSavedMenu(fileName)) {
+			displayMessage = getMainMenuString();
+		}
 	}
 
 	// display help menu
@@ -65,7 +71,6 @@ public class MainMenuView extends View {
 	}
 
 	private void saveMenu() {
-		String saveFileName;
 		String fileName = getInput("Enter filename:");
 		if (Sample.saveMenu(fileName)) {
 			displayMessage = getMainMenuString();
@@ -74,7 +79,15 @@ public class MainMenuView extends View {
 
 	private static String getContinueMenuString() {
 		if (Sample.getRestaurantMenu() != null) {
-			return "\nC - Continue editing current menu";
+			return "\nC - Continue editing menu, \"" + Sample.getRestaurantMenu().getRestaurantName() + "\"";
+		} else {
+			return "";
+		}
+	}
+
+	private static String getSaveMenuString() {
+		if (Sample.getRestaurantMenu() != null) {
+			return "\nS - Save menu, \"" + Sample.getRestaurantMenu().getRestaurantName() + "\"";
 		} else {
 			return "";
 		}
@@ -85,8 +98,8 @@ public class MainMenuView extends View {
 		return "\n---------------------------------------------------"
 				+ "\n|  Main Menu                                      |"
 				+ "\n---------------------------------------------------" + "\nN - Create new menu"
-				+ "\nL - Load menu from a file" + getContinueMenuString() + "\nH - Get help on how to use this program"
-				+ "\nQ - Quit" + "\n---------------------------------------------------"
-				+ "\nPlease enter your choice: ";
+				+ "\nL - Load menu from a file" + getContinueMenuString() + getSaveMenuString()
+				+ "\nH - Get help on how to use this program" + "\nQ - Quit"
+				+ "\n---------------------------------------------------" + "\nPlease enter your choice: ";
 	}
 }

@@ -12,15 +12,15 @@ import java.io.Serializable;
 
 public class Food extends RestaurantMenuItem implements Serializable {
 	private String description;
-	private int itemType;
+	private String itemType;
 
 	public Food() {
 		super("", 0, 0);
 		this.setDescription("");
-		this.setItemType(0);
+		this.setItemType("");
 	}
 
-	public Food(String name, double price, int calories, String description, int itemType) {
+	public Food(String name, double price, int calories, String description, String itemType) {
 		super(name, price, calories);
 		this.setDescription(description);
 		this.setItemType(itemType);
@@ -37,7 +37,7 @@ public class Food extends RestaurantMenuItem implements Serializable {
 	}
 
 	// set item type
-	public void setItemType(int itemType) {
+	public void setItemType(String itemType) {
 		this.itemType = itemType;
 	}
 
