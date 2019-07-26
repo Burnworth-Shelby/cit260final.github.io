@@ -88,8 +88,8 @@ public class RestaurantMenuView extends View {
 				System.out.println("***Invalid input.  Try again.");
 			}
 			newItem.setName(itemName);
-			newItem.setCalories(getInt("How many calories does a serving of " + itemName + " contain?"));
-			newItem.setPrice(getDouble("How much does " + itemName + " cost?"));
+			newItem.setCalories(getInt("\nHow many calories does a serving of " + itemName + " contain? "));
+			newItem.setPrice(getDouble("How much does " + itemName + " cost? "));
 			RestaurantMenu currentMenu = Sample.getRestaurantMenu();
 			currentMenu.addMenuItem(newItem);
 			Sample.setRestaurantMenu(currentMenu);
@@ -98,7 +98,13 @@ public class RestaurantMenuView extends View {
 	}
 
 	private void editMenuItem() {
-		System.out.printf("You selected edit menu item");
+		RestaurantMenu currentMenu = Sample.getRestaurantMenu();
+		int index = 1;
+		System.out.println("Which item would you like to edit?");
+		for (RestaurantMenuItem item : currentMenu.getMenuItems()) {
+			System.out.println(" " + index + " - " + item.getName() + " (" + item.getPrice() + ")");
+			index++;
+		}
 	}
 
 	private void deleteMenuItem() {
