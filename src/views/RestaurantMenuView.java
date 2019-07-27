@@ -1,5 +1,7 @@
 package views;
 
+import java.util.ArrayList;
+
 import model.Beverage;
 import model.Food;
 import model.RestaurantMenu;
@@ -35,6 +37,9 @@ public class RestaurantMenuView extends View {
 			System.out.printf(this.getClass().getName() + "\n***Invalid selection. Try again.");
 			break;
 		}
+
+		displayMessage = getRestaurantMenuString();
+
 		return false;
 	}
 
@@ -46,7 +51,6 @@ public class RestaurantMenuView extends View {
 			String itemType = getInput("What type of item is \"" + itemName
 					+ "\"?\n A - Appetizer\n E - Entree\n D - Dessert\n B - Beverage");
 			itemType = itemType.toUpperCase();
-			System.out.println(itemType);
 			if (itemType.equals("A") || itemType.equals("E") || itemType.equals("D")) {
 
 				switch (itemType) {
@@ -65,17 +69,17 @@ public class RestaurantMenuView extends View {
 				newFoodItem.setDescription(getInput("Please provide a description for\"" + itemName + "\""));
 				newItem = newFoodItem;
 				promptType = false;
-			} else if (itemType == "B") {
+			} else if (itemType.equals("B")) {
 				Beverage newBeverageItem = new Beverage();
 				boolean refillable = false;
 				boolean promptRefillable = true;
 				while (promptRefillable) {
 					String refillableInput = getInput("Is this item refillable? (y/n)");
 					refillableInput = refillableInput.toUpperCase();
-					if (refillableInput == "Y") {
+					if (refillableInput.equals("Y")) {
 						refillable = true;
 						promptRefillable = false;
-					} else if (refillableInput == "N") {
+					} else if (refillableInput.equals("N")) {
 						promptRefillable = false;
 					} else {
 						System.out.println("***Invalid input.  Try again.");
@@ -100,23 +104,66 @@ public class RestaurantMenuView extends View {
 	private void editMenuItem() {
 		RestaurantMenu currentMenu = Sample.getRestaurantMenu();
 		int index = 1;
-		System.out.println("Which item would you like to edit?");
+		String editPrompt = "Which item would you like to edit?";
 		for (RestaurantMenuItem item : currentMenu.getMenuItems()) {
-			System.out.println(" " + index + " - " + item.getName() + " (" + item.getPrice() + ")");
+			editPrompt += "\n " + index + " - " + item.getName() + " (" + item.getPrice() + ")";
 			index++;
 		}
+		editPrompt += "\n";
+		int editItemIndex = getInt(editPrompt) - 1;
+
+		View EditItemMenu = new EditItemView(currentMenu.getMenuItem(editItemIndex));
+		EditItemMenu.display();
 	}
 
 	private void deleteMenuItem() {
-		System.out.printf("You selected delete menu item");
+		RestaurantMenu currentMenu = Sample.getRestaurantMenu();
+		int index = 1;
+		String deletePrompt = "Which item would you like to edit?";
+		for (RestaurantMenuItem item : currentMenu.getMenuItems()) {
+			deletePrompt += "\n " + index + " - " + item.getName() + " (" + item.getPrice() + ")";
+			index++;
+		}
+		deletePrompt += "\n";
+		int deleteItemIndex = getInt(deletePrompt) - 1;
+		currentMenu.removeMenuItem(deleteItemIndex);
 	}
 
 	private void renameRestaurant() {
-		System.out.printf("You selected rename restaurant");
+		String newName = getInput("What is the new name of your restaurant?");
+		Sample.getRestaurantMenu().setRestaurantName(newName);
 	}
 
 	private void printMenu() {
-		System.out.printf("You selected print menu");
+		RestaurantMenu currentMenu = Sample.getRestaurantMenu();
+		ArrayList<RestaurantMenuItem> currentMenuItems = currentMenu.getMenuItems();
+		String separator = "------------------------------------------------------------\n";
+		System.out.println("\n\n" + separator + separator + "             " + currentMenu.getRestaurantName() + "\n"
+				+ separator + separator);
+		System.out.println("  APPETIZERS");
+		for (RestaurantMenuItem item : currentMenuItems) {
+			if (item.getItemType().equals("Appetizer")) {
+				System.out.println(item.asString());
+			}
+		}
+		System.out.println("\n  ENTREES");
+		for (RestaurantMenuItem item : currentMenuItems) {
+			if (item.getItemType().equals("Entree")) {
+				System.out.println(item.asString());
+			}
+		}
+		System.out.println("\n  BEVERAGES    * indicates that beverage is refillable");
+		for (RestaurantMenuItem item : currentMenuItems) {
+			if (item.getItemType().equals("Beverage")) {
+				System.out.println(item.asString());
+			}
+		}
+		System.out.println("\n  DESSERTS");
+		for (RestaurantMenuItem item : currentMenuItems) {
+			if (item.getItemType().equals("Dessert")) {
+				System.out.println(item.asString());
+			}
+		}
 	}
 
 	// menu display to user

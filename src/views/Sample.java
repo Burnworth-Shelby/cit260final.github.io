@@ -22,7 +22,7 @@ public class Sample {
 	public static void main(String[] args) {
 		MainMenuView mainMenu = new MainMenuView();
 		mainMenu.display();
-		System.out.printf("Game Over.");
+		System.out.printf("Program Terminated.");
 	}
 
 	/**

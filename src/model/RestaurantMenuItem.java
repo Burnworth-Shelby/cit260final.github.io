@@ -51,10 +51,10 @@ public abstract class RestaurantMenuItem implements Serializable {
 		this.calories = calories;
 	}
 
-	abstract String getItemType();
+	public abstract String getItemType();
 
 	// return name, price and calories of item
 	public String asString() {
-		return this.name + this.price + this.calories;
+		return "    " + this.name + " (" + this.price + ") " + this.calories + " calories\n";
 	}
 }

@@ -22,9 +22,6 @@ public class MainMenuView extends View {
 		case "C": // display help menu
 			this.continueEditing();
 			break;
-		case "H": // display help menu
-			this.showHelpMenu();
-			break;
 		case "S":
 			this.saveMenu();
 			break;
@@ -52,12 +49,6 @@ public class MainMenuView extends View {
 		if (Sample.getSavedMenu(fileName)) {
 			displayMessage = getMainMenuString();
 		}
-	}
-
-	// display help menu
-	private void showHelpMenu() {
-		View helpMenu = new HelpMenuView();
-		helpMenu.display();
 	}
 
 	// edit menu output to user
@@ -98,8 +89,7 @@ public class MainMenuView extends View {
 		return "\n---------------------------------------------------"
 				+ "\n|  Main Menu                                      |"
 				+ "\n---------------------------------------------------" + "\nN - Create new menu"
-				+ "\nL - Load menu from a file" + getContinueMenuString() + getSaveMenuString()
-				+ "\nH - Get help on how to use this program" + "\nQ - Quit"
+				+ "\nL - Load menu from a file" + getContinueMenuString() + getSaveMenuString() + "\nQ - Quit"
 				+ "\n---------------------------------------------------" + "\nPlease enter your choice: ";
 	}
 }

@@ -44,6 +44,11 @@ public class Beverage extends RestaurantMenuItem implements Serializable {
 	@Override
 	public String asString() {
 		// TODO Auto-generated method stub
-		return super.asString() + this.refillable;
+		String refillableMarker = "";
+		if (this.refillable) {
+			refillableMarker = "*";
+		}
+		return "    " + this.getName() + refillableMarker + " (" + this.getPrice() + ") " + this.getCalories()
+				+ " calories";
 	}
 }

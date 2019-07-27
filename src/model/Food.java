@@ -42,14 +42,13 @@ public class Food extends RestaurantMenuItem implements Serializable {
 	}
 
 	@Override
-	String getItemType() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getItemType() {
+		return this.itemType;
 	}
 
 	@Override
 	public String asString() {
 		// TODO Auto-generated method stub
-		return super.asString() + this.description + this.getItemType();
+		return super.asString() + "      " + this.description;
 	}
 }
